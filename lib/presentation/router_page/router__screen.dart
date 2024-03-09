@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:moov_square/presentation/router_page/router.dart';
 
-class NavigatorScreen extends StatelessWidget {
-  const NavigatorScreen({super.key, required title}) : _title = title;
+class RouterScreen extends StatelessWidget {
+  const RouterScreen({super.key, required title}) : _title = title;
 
-  final _title;
+  final String _title;
 
   @override
   Widget build(BuildContext context) {
+    void navigateTo(String route) {
+      Navigator.of(context).pushNamed(route);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(_title),
@@ -21,11 +26,10 @@ class NavigatorScreen extends StatelessWidget {
                 margin: const EdgeInsets.all(10),
                 child: FilledButton(
                   child: const Text('Бегающий квадрат'),
-                  onPressed: () =>
-                      Navigator.of(context).pushNamed('/square-app'),
+                  onPressed: () => navigateTo(Routes.squareApp),
                 )),
             FilledButton(
-              onPressed: () => Navigator.of(context).pushNamed('/user-form'),
+              onPressed: () => navigateTo(Routes.userForm),
               child: const Text('Формочка пользователя'),
             )
           ],

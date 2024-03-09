@@ -8,15 +8,28 @@ class UserForm extends StatelessWidget {
   final nameFieldController = TextEditingController();
   final surNameFieldController = TextEditingController();
 
-  void _sayHi(context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Привет!'),
-        content: Text(
-            'Привет, ${nameFieldController.text} ${surNameFieldController.text}!'),
-      ),
-    );
+  void _sayHi(context) async {
+    if (nameFieldController.text.isEmpty ||
+        surNameFieldController.text.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          title: Text('Упс!'),
+          content: Text('Фамилия и имя не введены!'),
+        ),
+      );
+    } else {
+      await showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Привет!'),
+          content: Text(
+              'Привет, ${nameFieldController.text} ${surNameFieldController.text}!'),
+        ),
+      );
+      nameFieldController.text = '';
+      surNameFieldController.text = '';
+    }
   }
 
   @override
