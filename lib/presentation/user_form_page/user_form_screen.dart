@@ -8,7 +8,7 @@ class UserForm extends StatelessWidget {
   final nameFieldController = TextEditingController();
   final surNameFieldController = TextEditingController();
 
-  void _sayHi(context) async {
+  Future void _sayHi(context) async {
     if (nameFieldController.text.isEmpty ||
         surNameFieldController.text.isEmpty) {
       showDialog(
